@@ -14,11 +14,11 @@ export default function PostIndex(props) {
         <div>
             ${props.posts.map(post => `
                   <div>
-                        <input class="edit-title" contentEditable="false" value="${post.title}">
-                        <input class="edit-content" contentEditable="false" value="${post.content}">
+                        <input class="edit-title"  value="${post.title}" readonly>
+                        <input class="edit-content" value="${post.content}" readonly>
 
                         <button class="edit-btn" data-id="${post.id}">Edit</button>
-                        <button class="delete-btn">Delete</button>
+                        <button class="delete-btn" data-id="${post.id}">Delete</button>
                 </div>
             `).join('')}
             <!--    add edit, delete buttons, add edit form   -->
@@ -38,27 +38,15 @@ export function PostEvents() {
 
     createEvent()
     editEvent()
-    //
-    // var postObj = {};
-    // var addListener = function (event) {
-    //
-    //     const title = document.getElementById('input-title').value;
-    //     const content = document.getElementById('input-content').value;
-    //     const id = document.getElementById('input-id').value;
-    //
-    //     postObj = {title, content, id}
-    //     console.log(postObj);
-    // }
-    //
-    // document.getElementById('add-btn').addEventListener('click', addListener);
+    deleteEvent()
 
 }
 function createEvent() {
     $("#create-post-btn").click(function (){
 
         let post = {
-            title : $('#title').val(),
-            content : $('#content').val()
+            title : $("#title").val(),
+            content : $("#content").val()
         }
 
         let request = {
@@ -82,11 +70,71 @@ function editEvent(){
     $(".edit-btn").click(function (){
         console.log("edit event fired off")
 
-        $(this).siblings(".edit-title, .edit-content").attr("contenteditable", true);
+        $(".edit-title, .edit-content").attr("readonly", true)
+
+        $(this).siblings(".edit-title, .edit-content").attr("readonly", false);
         $(this).text("Save");
+
+
+
+        $(this).on("click", submitEditEvent)
+
     })
 }
 
+function submitEditEvent(){
+    let post = {
+        title: $(this).siblings(".edit-title").val(),
+        content: $(this).siblings(".edit-content").val()
+    }
+
+    let request = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(post)
+    }
+
+    console.log(post)
+
+    $(this).off("click", submitEditEvent);
+
+    let id = $(this).attr("data-id")
+
+    fetch(`http://localhost:8080/api/posts/${id}`, request)
+        .then(res => {
+            console.log(res.status);
+            createView("/posts")
+        }).catch(error => {
+        console.log(error);
+        createView("/posts")
+    });
+
+
+}
+
+function deleteEvent(){
+    $(".delete-btn").click(function (){
+
+        let request = {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"},
+        }
+
+        let id = $(this).attr("data-id")
+
+        fetch(`http://localhost:8080/api/posts/${id}`, request)
+            .then(res => {
+                console.log(res.status);
+                createView("/posts");
+            })
+            .catch(error => {
+                console.log(error)
+                createView("/posts")
+            })
+    })
+}
 
 
 
