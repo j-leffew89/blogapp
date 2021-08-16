@@ -46,7 +46,7 @@ public class PostController {
     }
 
     @DeleteMapping("{id}")
-    private void deleteDelete(@PathVariable Long id){
+    private void deletePost(@PathVariable Long id){
         System.out.println("The Id Deleted was " + id);
     }
 

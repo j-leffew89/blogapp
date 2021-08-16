@@ -21,15 +21,12 @@ export default function PostIndex(props) {
                         <button class="delete-btn" data-id="${post.id}">Delete</button>
                 </div>
             `).join('')}
-            <!--    add edit, delete buttons, add edit form   -->
         </div>
+<!--        <form></form>-->
 
+<!--        <form>-->
 
-        <form></form>
-
-        <form>
-
-        </form>
+<!--        </form>-->
     </main>
     `;
 }
@@ -39,8 +36,10 @@ export function PostEvents() {
     createEvent()
     editEvent()
     deleteEvent()
+    RegisterEvent()
 
 }
+
 function createEvent() {
     $("#create-post-btn").click(function (){
 
@@ -134,6 +133,20 @@ function deleteEvent(){
                 createView("/posts")
             })
     })
+}
+
+function RegisterEvent(){
+    let request = {
+        method: "POST",
+        header: {"Content-Type": "application/json"},
+        body: JSON.stringify(register)
+    };
+
+    fetch("http://localhost:8080/api/users", request)
+        .then((response) => {
+            console.log(response.status)
+            createView("/");
+        });
 }
 
 
