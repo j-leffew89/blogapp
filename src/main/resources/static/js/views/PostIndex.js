@@ -36,7 +36,7 @@ export function PostEvents() {
     createEvent()
     editEvent()
     deleteEvent()
-    RegisterEvent()
+
 
 }
 
@@ -135,19 +135,6 @@ function deleteEvent(){
     })
 }
 
-function RegisterEvent(){
-    let request = {
-        method: "POST",
-        header: {"Content-Type": "application/json"},
-        body: JSON.stringify(register)
-    };
-
-    fetch("http://localhost:8080/api/users", request)
-        .then((response) => {
-            console.log(response.status)
-            createView("/");
-        });
-}
 
 
 

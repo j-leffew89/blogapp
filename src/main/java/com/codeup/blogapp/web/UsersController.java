@@ -33,24 +33,33 @@ public class UsersController {
         }
     }
 
+    @GetMapping("{username}")
+    private void getUserByUsername(@PathVariable String username){
+        System.out.println(username);
+    }
+
+    @GetMapping("{email}")
+    private void getUserByEmail(@PathVariable String email){
+        System.out.println(email);
+    }
+
     @PostMapping
     private void createUser(@RequestBody User newUser) {
         System.out.println(newUser.getUsername());
         System.out.println(newUser.getEmail());
-        System.out.println(newUser.getId());
         System.out.println(newUser.getPassword());
     }
 
     @PutMapping("{id}")
-    private void updateUser(@PathVariable Long id, @RequestBody User newUser){
-        System.out.println(newUser.getUsername());
-        System.out.println(newUser.getEmail());
-        System.out.println(id);
+    private void updateUser(@PathVariable Long id, @RequestBody User User){
+        System.out.println(User.getUsername());
+        System.out.println(User.getEmail());
+        System.out.println(User.getPassword());
     }
 
     @DeleteMapping("{id}")
     private void deleteUser(@PathVariable Long id){
-        System.out.println("The Id Deleted was " + id);
+        System.out.println("Deleting user with ID: " + id);
 
     }
 }
