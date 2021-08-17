@@ -14,8 +14,11 @@ export default function PostIndex(props) {
         <div>
             ${props.posts.map(post => `
                   <div>
+                  
+                         <h2>${post.user.username}</h2>
                         <input class="edit-title"  value="${post.title}" readonly>
                         <input class="edit-content" value="${post.content}" readonly>
+                        
 
                         <button class="edit-btn" data-id="${post.id}">Edit</button>
                         <button class="delete-btn" data-id="${post.id}">Delete</button>
