@@ -25,11 +25,6 @@ export default function PostIndex(props) {
                 </div>
             `).join('')}
         </div>
-<!--        <form></form>-->
-
-<!--        <form>-->
-
-<!--        </form>-->
     </main>
     `;
 }
