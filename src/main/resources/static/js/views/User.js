@@ -12,22 +12,22 @@ export default function User(props) {
                   
                            <div class="row g-3">
             <div class="col">
-            <input type="text" class="form-control" data-id="" aria-label="First name" value="${user.name}">
+            <input type="text" class="form-control" data-id="" aria-label="First name" value="${user.id}">
             </div>
         </div>
         <div class="row g-3">
             <div class="col">
-            <input type="text" class="form-control" placeholder="Username" aria-label="First name">
+            <input type="text" class="form-control" placeholder="Username" aria-label="First name" value="${user.username}">
             </div>
         </div>
         <div class="row g-3">
             <div class="col">
-            <input type="text" class="form-control" placeholder="E-mail" aria-label="First name">
+            <input type="text" class="form-control" placeholder="E-mail" aria-label="First name" value="${user.email}">
             </div>
         </div>
         <div class="row g-3">
             <div class="col">
-            <input type="text" class="form-control" placeholder="Password" aria-label="First name">
+            <input type="password" class="form-control" placeholder="Password" aria-label="First name" value="${user.password}">
             </div>
         </div>
             <button type="button" id="edit-btn">Edit</button>
@@ -39,12 +39,4 @@ export default function User(props) {
 }
 
 export function UserEvent(){
-
-    // $("#edit-btn").click(function () {
-    //
-    //     console.log("edit event fired off!!");
-    //
-    //     $().attr("contenteditable", false);
-    //     $("#").text("Edit");
-    // })
 }

@@ -16,9 +16,9 @@ public class UsersController {
     User user = new User(1L, "testy", "testy@test.com", "test123", null);
 
     List<Post> post = new ArrayList<>(){{
-        add(new Post(1L, "testy1", "Testy1", null));
-        add(new Post(2L, "testy2", "Testy2", null));
-        add(new Post(3L, "testy3", "Testy3", null));
+        add(new Post(1L, "testy1", "Testy1", null, null));
+        add(new Post(2L, "testy2", "Testy2", null, null));
+        add(new Post(3L, "testy3", "Testy3", null, null));
     }};
 
 
@@ -27,8 +27,8 @@ public class UsersController {
         return new ArrayList<>() {
             {
                 add(new User(1L, "amadoIII", "amadoiii@gmail.com","amado@III", null));
-                add(new User(1L, "richardL", "richardL@gmail.com","RichardL", null));
-                add(new User(1L, "PrachiP", "prachiP@gmail.com","PrachiP", null));
+                add(new User(2L, "richardL", "richardL@gmail.com","RichardL", null));
+                add(new User(3L, "PrachiP", "prachiP@gmail.com","PrachiP", null));
             }
         };
     }

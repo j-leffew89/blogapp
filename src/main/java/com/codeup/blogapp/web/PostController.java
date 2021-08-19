@@ -1,5 +1,6 @@
 package com.codeup.blogapp.web;
 
+import com.codeup.blogapp.data.Category;
 import com.codeup.blogapp.data.Post;
 import com.codeup.blogapp.data.User;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +16,15 @@ public class PostController {
     private List<Post> getPosts() {
 
         User user = new User( "testy");
-
+        List<Category> categories = new ArrayList<>(){{
+            add(new Category(1L, "Spring Boot"));
+            add(new Category(2L, "Why JS"));
+        }};
         return new ArrayList<>() {
             {
-                add(new Post(1L, "Harry Potter", "people", user));
-                add(new Post(2L, "Lord of the Ring", "Other people", user));
-                add(new Post(3L, "Avengers", "A few more people", user));
+                add(new Post(1L, "Harry Potter", "people", user, categories));
+                add(new Post(2L, "Lord of the Ring", "Other people", user, categories));
+                add(new Post(3L, "Avengers", "A few more people", user, categories));
 
             }
         };
@@ -32,7 +36,7 @@ public class PostController {
         User user = new User(1L, "testy", "testy@test.com", "test123", null);
 
         if (id == 1) {
-            return new Post(1L, "Harry Potter", "People", user);
+            return new Post(1L, "Harry Potter", "People", user, null);
         } else {
             return null;
         }
