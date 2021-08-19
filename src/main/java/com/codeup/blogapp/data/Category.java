@@ -1,9 +1,15 @@
 package com.codeup.blogapp.data;
 
+import java.util.Collection;
+
 public class Category {
 
     private long id;
     private String name;
+    private Collection<Post> post;
+
+    public Category(){
+    }
 
     public Category(long id, String name) {
         this.id = id;
@@ -24,5 +30,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Collection<Post> getPost() {
+        return post;
+    }
+
+    public void setPost(Collection<Post> post) {
+        this.post = post;
     }
 }

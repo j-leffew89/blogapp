@@ -8,6 +8,7 @@ import LoginEvent from "./auth.js";
 import {PostEvents} from "./views/PostIndex.js";
 import {createRegisterEvent} from "./views/Register.js";
 import RegisterEvent from "./views/Register.js";
+import User, {UserEvent} from "./views/User.js";
 
 /**
  * Returns the route object for a specific route based on the given URI
@@ -67,6 +68,14 @@ export default function router(URI) {
             uri: '/register',
             title: "Register",
             viewEvent : createRegisterEvent
+        },
+
+        '/user': {
+            returnView: User,
+            state: {users:"/api/users"},
+            url: '/user',
+            title:"users",
+            viewEvent : UserEvent
         }
     };
 
