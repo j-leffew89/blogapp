@@ -1,6 +1,7 @@
 import createView from "../createView.js";
 
 export default function PostIndex(props) {
+    console.log(props)
     return `
          <header>
         <h1>Posts Page</h1>
@@ -9,7 +10,12 @@ export default function PostIndex(props) {
     <form>
         <input id="title" type="text">
         <input id="content" type="text">
+        <select id="selectedCategory">
+        <option value="">--Select a Category--</option>
+            ${props.categories.map(category => `<option value=${category.id}>${category.name}</option>`)}
+        </select>
         <button id="create-post-btn" type="button">Add Post</button>
+        
     </form>
         <div>
             ${getPostsComponent(props.posts)}
@@ -20,8 +26,8 @@ export default function PostIndex(props) {
 
 function getPostsComponent(posts){
    return posts.map(post => `
-                  <div class="post">
-                         <h2>${post.user.username}</h2>
+                  <div class="post" style="margin-top: 10px">
+<!--                        <h2>${post.user.username}</h2>-->
                         <input class="edit-title"  value="${post.title}" readonly>
                         <input class="edit-content" value="${post.content}" readonly>
                         <h4 class="username"> posted by: ${post.user.username}</h4>
@@ -30,6 +36,7 @@ function getPostsComponent(posts){
                         </div>
                         <button class="edit-btn" data-id="${post.id}">Edit</button>
                         <button class="delete-btn" data-id="${post.id}">Delete</button>
+                        <br>
                 </div>
             `).join('')
 }
@@ -57,9 +64,10 @@ function createEvent() {
 
         let post = {
             title : $("#title").val(),
-            content : $("#content").val()
+            content : $("#content").val(),
+            categories :[{id:$("#selectedCategory").val()}]
         }
-
+        console.log(post)
         let request = {
             method: "POST",
             headers: {"Content-Type": "application/json"},

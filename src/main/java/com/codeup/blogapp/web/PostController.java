@@ -46,6 +46,7 @@ public class PostController {
     private void createPost(@RequestBody Post newPost) {
         System.out.println(newPost.getTitle());
         System.out.println(newPost.getContent());
+        System.out.println(newPost.getCategories());
     }
 
     @PutMapping("{id}")

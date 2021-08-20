@@ -18,6 +18,9 @@ public class Post {
         this.categories = categories;
     }
 
+    public Post(){
+    }
+
     public Post(String title, String content){
         this.title = title;
         this.content = content;
