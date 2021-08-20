@@ -29,7 +29,7 @@ public class User {
     @Column(nullable = false)
     private Role role = Role.USER;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
     private Collection<Post> post;
 
     public enum Role{USER, ADMIN};

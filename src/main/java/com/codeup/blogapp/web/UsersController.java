@@ -3,6 +3,7 @@ package com.codeup.blogapp.web;
 
 import com.codeup.blogapp.data.post.Post;
 import com.codeup.blogapp.data.user.User;
+import com.codeup.blogapp.data.user.UsersRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,44 +14,41 @@ import java.util.List;
 
 public class UsersController {
 
-    User user = new User(1L, "testy", "testy@test.com", "test123", null);
+    private final UsersRepository usersRepository;
 
-    List<Post> post = new ArrayList<>(){{
-        add(new Post(1L, "testy1", "Testy1", null, null));
-        add(new Post(2L, "testy2", "Testy2", null, null));
-        add(new Post(3L, "testy3", "Testy3", null, null));
-    }};
+    public UsersController(UsersRepository usersRepository){
+        this.usersRepository = usersRepository;
+    }
+
+//    User user = new User(1L, "testy", "testy@test.com", "test123", null);
+//
+//    List<Post> post = new ArrayList<>(){{
+//        add(new Post(1L, "testy1", "Testy1", null, null));
+//        add(new Post(2L, "testy2", "Testy2", null, null));
+//        add(new Post(3L, "testy3", "Testy3", null, null));
+//    }};
 
 
     @GetMapping
     private List<User> getUsers() {
-        return new ArrayList<>() {
-            {
-                add(new User(1L, "amadoIII", "amadoiii@gmail.com","amado@III", null));
-                add(new User(2L, "richardL", "richardL@gmail.com","RichardL", null));
-                add(new User(3L, "PrachiP", "prachiP@gmail.com","PrachiP", null));
-            }
-        };
+        return usersRepository.findAll();
     }
 
     @GetMapping("/{id}")
     private User getUserById(@PathVariable Long id){
-
-        if (id == 1){
-            return new User(1L, "amadoIII", "amadoiii@gmail.com","amado@III", null);
-        }else{
-            return null;
-        }
+        return usersRepository.getById(id);
     }
 
     @GetMapping("{username}")
-    private void getUserByUsername(@PathVariable String username){
+    private User getUserByUsername(@PathVariable String username){
         System.out.println(username);
+        return usersRepository.findByUsername(username);
     }
 
     @GetMapping("{email}")
-    private void getUserByEmail(@PathVariable String email){
+    private User getUserByEmail(@PathVariable String email){
         System.out.println(email);
+        return usersRepository.findByEmail(email);
     }
 
     @PostMapping
@@ -58,19 +56,21 @@ public class UsersController {
         System.out.println(newUser.getUsername());
         System.out.println(newUser.getEmail());
         System.out.println(newUser.getPassword());
+        usersRepository.save(newUser);
     }
 
     @PutMapping("{id}")
-    private void updateUser(@PathVariable Long id, @RequestBody User User){
-        System.out.println(User.getUsername());
-        System.out.println(User.getEmail());
-        System.out.println(User.getPassword());
+    private void updateUser(@PathVariable Long id, @RequestBody User user){
+        System.out.println(user.getUsername());
+        System.out.println(user.getEmail());
+        System.out.println(user.getPassword());
         System.out.println(id);
+        usersRepository.save(user);
     }
 
     @DeleteMapping("{id}")
     private void deleteUser(@PathVariable Long id){
         System.out.println("Deleting user with ID: " + id);
-
+        usersRepository.deleteById(id);
     }
 }
