@@ -24,6 +24,7 @@ public class User {
     private String password;
 
     private Role role = Role.USER;
+
     private Collection<Post> post;
 
     public enum Role{USER, ADMIN};

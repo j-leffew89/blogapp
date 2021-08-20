@@ -1,6 +1,6 @@
 package com.codeup.blogapp.web;
 
-import com.codeup.blogapp.data.Category;
+import com.codeup.blogapp.data.category.Category;
 import com.codeup.blogapp.data.post.Post;
 import com.codeup.blogapp.data.user.User;
 import org.springframework.web.bind.annotation.*;
