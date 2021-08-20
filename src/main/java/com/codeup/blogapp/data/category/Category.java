@@ -11,11 +11,12 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
 
+    @ManyToMany(mappedBy = "categories")
     private Collection<Post> post;
 
     public Category(){
@@ -26,7 +27,7 @@ public class Category {
         this.name = name;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
