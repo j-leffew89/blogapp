@@ -9,16 +9,16 @@ export default function Register(props) {
         <title>Register</title>
     </head>
     <body>
-        <h1>Register</h1>
+        <h1 style="font-family: cursive; text-align-last: center; margin-left: 50px">Register</h1>
 
-        <form id="login-form">
+        <form id="login-form" style="text-align-last: center; font-family: cursive; white-space: break-spaces">
             <label for="username">Username</label>
             <input id="username" name="username" type="text"/>
             <label for="email">Email</label>
             <input id="email" name="email" type="text"/>
             <label for="password">Password</label>
             <input id="password" name="password" type="password"/>
-            <input id="register-btn" type="button" value="Log In"/>
+            <input id="register-btn" type="button" value="Log In" style="margin-top: 10px"/>
 
         </form>
     </body>
