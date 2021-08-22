@@ -1,12 +1,10 @@
 package com.codeup.blogapp.web;
 
-
-import com.codeup.blogapp.data.post.Post;
 import com.codeup.blogapp.data.user.User;
 import com.codeup.blogapp.data.user.UsersRepository;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @RestController
@@ -19,15 +17,6 @@ public class UsersController {
     public UsersController(UsersRepository usersRepository){
         this.usersRepository = usersRepository;
     }
-
-//    User user = new User(1L, "testy", "testy@test.com", "test123", null);
-//
-//    List<Post> post = new ArrayList<>(){{
-//        add(new Post(1L, "testy1", "Testy1", null, null));
-//        add(new Post(2L, "testy2", "Testy2", null, null));
-//        add(new Post(3L, "testy3", "Testy3", null, null));
-//    }};
-
 
     @GetMapping
     private List<User> getUsers() {
@@ -72,5 +61,17 @@ public class UsersController {
     private void deleteUser(@PathVariable Long id){
         System.out.println("Deleting user with ID: " + id);
         usersRepository.deleteById(id);
+    }
+
+    @PutMapping({"{id}/updatePassword"})
+    private void updatePassword(@PathVariable Long id, @RequestParam(required = false) String oldPassword,
+                                @Valid @Size(min = 3) @RequestParam String newPassword){
+        if(!newPassword.equals(oldPassword)){
+            System.out.println("Password for id: " + id + " has been updated!");
+            System.out.println("Old password: " + oldPassword);
+            System.out.println("New password: " + newPassword);
+            usersRepository.updatePassword(id);
+        }
+
     }
 }
