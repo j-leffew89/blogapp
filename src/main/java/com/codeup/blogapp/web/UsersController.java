@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/users", headers = "Accept=application/json")
+@RequestMapping(value = "/api/users", headers = "Accept=application/json", produces = "application/json")
 
 public class UsersController {
 
@@ -28,32 +28,23 @@ public class UsersController {
         return usersRepository.getById(id);
     }
 
-    @GetMapping("{username}")
-    private User getUserByUsername(@PathVariable String username){
-        System.out.println(username);
+    @GetMapping("/findByUsername")
+    private User getUserByUsername(@RequestParam String username){
         return usersRepository.findByUsername(username);
     }
-
-    @GetMapping("{email}")
-    private User getUserByEmail(@PathVariable String email){
+    @GetMapping("/findByEmail")
+    private User getUserByEmail(@RequestParam String email){
         System.out.println(email);
         return usersRepository.findByEmail(email);
     }
 
     @PostMapping
     private void createUser(@RequestBody User newUser) {
-        System.out.println(newUser.getUsername());
-        System.out.println(newUser.getEmail());
-        System.out.println(newUser.getPassword());
         usersRepository.save(newUser);
     }
 
     @PutMapping("{id}")
     private void updateUser(@PathVariable Long id, @RequestBody User user){
-        System.out.println(user.getUsername());
-        System.out.println(user.getEmail());
-        System.out.println(user.getPassword());
-        System.out.println(id);
         usersRepository.save(user);
     }
 
@@ -63,24 +54,13 @@ public class UsersController {
         usersRepository.deleteById(id);
     }
 
-//    @PutMapping({"{id}/updatePassword"})
-//    private void updatePassword(@PathVariable Long id, @RequestParam(required = false) String oldPassword,
-//                                @Valid @Size(min = 3) @RequestParam String newPassword){
-//        if(!newPassword.equals(oldPassword)){
-//            System.out.println("Password for id: " + id + " has been updated!");
-//            System.out.println("Old password: " + oldPassword);
-//            System.out.println("New password: " + newPassword);
-//        }
-//        usersRepository.save(id);
-//    }
+    @PutMapping("/{id}/updatePassword")
+    private void updatePassword
+            (@PathVariable Long id, @RequestParam(required = false)
+                    String oldPassword, @Valid @Size(min = 3) @RequestParam String newPassword){
+        User user = usersRepository.getById(id);
+        user.setPassword(newPassword);
+        usersRepository.save(user);
 
-//    @PutMapping("/{id}/updatePassword")
-//    private void updatePassword
-//            (@PathVariable Long id, @RequestParam(required = false)
-//                    String oldPassword, @Valid @Size(min = 3) @RequestParam String newPassword){
-//        User user = usersRepository.getById(id);
-//        user.setPassword(newPassword);
-//        usersRepository.save(user);
-//
-//    }
+    }
 }
