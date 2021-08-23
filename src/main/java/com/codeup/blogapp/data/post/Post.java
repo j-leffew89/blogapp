@@ -25,7 +25,6 @@ public class Post {
 
     @ManyToOne
     @JsonBackReference
-//    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToMany(cascade = CascadeType.ALL)
