@@ -14,10 +14,10 @@ import java.util.List;
 public class CategoriesController {
 
     List<Category> categories = new ArrayList<>(){{
-        add(new Category(1L, "Sports"));
-        add(new Category(2L, "Family"));
-        add(new Category(3L, "Food"));
-        add(new Category(4L,"Drama"));
+//        add(new Category(1L, "Sports"));
+//        add(new Category(2L, "Family"));
+//        add(new Category(3L, "Food"));
+//        add(new Category(4L,"Drama"));
     }};
 
     @GetMapping

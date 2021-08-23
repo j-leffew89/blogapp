@@ -63,15 +63,24 @@ public class UsersController {
         usersRepository.deleteById(id);
     }
 
-    @PutMapping({"{id}/updatePassword"})
-    private void updatePassword(@PathVariable Long id, @RequestParam(required = false) String oldPassword,
-                                @Valid @Size(min = 3) @RequestParam String newPassword){
-        if(!newPassword.equals(oldPassword)){
-            System.out.println("Password for id: " + id + " has been updated!");
-            System.out.println("Old password: " + oldPassword);
-            System.out.println("New password: " + newPassword);
-            usersRepository.updatePassword(id);
-        }
+//    @PutMapping({"{id}/updatePassword"})
+//    private void updatePassword(@PathVariable Long id, @RequestParam(required = false) String oldPassword,
+//                                @Valid @Size(min = 3) @RequestParam String newPassword){
+//        if(!newPassword.equals(oldPassword)){
+//            System.out.println("Password for id: " + id + " has been updated!");
+//            System.out.println("Old password: " + oldPassword);
+//            System.out.println("New password: " + newPassword);
+//        }
+//        usersRepository.save(id);
+//    }
 
-    }
+//    @PutMapping("/{id}/updatePassword")
+//    private void updatePassword
+//            (@PathVariable Long id, @RequestParam(required = false)
+//                    String oldPassword, @Valid @Size(min = 3) @RequestParam String newPassword){
+//        User user = usersRepository.getById(id);
+//        user.setPassword(newPassword);
+//        usersRepository.save(user);
+//
+//    }
 }
