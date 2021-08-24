@@ -27,7 +27,7 @@ export default function PostIndex(props) {
 function getPostsComponent(posts){
    return posts.map(post => `
                   <div class="post" style="margin-top: 10px">
-<!--                        <h2>${post.user.username}</h2>-->
+                        
                         <input class="edit-title"  value="${post.title}" readonly>
                         <input class="edit-content" value="${post.content}" readonly>
                         <h4 class="username"> posted by: ${post.user.username}</h4>
