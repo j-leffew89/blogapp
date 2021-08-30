@@ -11,7 +11,7 @@ export default function Login(props) {
 
 <form id="login-form" style="text-align-last: center; font-family: cursive; white-space: break-spaces">
 <!--    <label for="username">Username</label>-->
-    <input id="username" name="username" type="text" placeholder="Username"/>
+    <input id="email" name="email" type="text" placeholder="Email"/>
 <!--    <label for="password">Password</label>-->
     <input id="password" name="password" type="password" placeholder="Password"/>
     

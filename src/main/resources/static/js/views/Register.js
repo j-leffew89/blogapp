@@ -9,9 +9,9 @@ export default function Register(props) {
         <title>Register</title>
     </head>
     <body>
-        <h1 style="font-family: cursive; text-align-last: center; margin-left: 50px">Register</h1>
+        <h1 style="font-family: serif; text-align-last: center; margin-left: 50px">Register</h1>
 
-        <form id="login-form" style="text-align-last: center; font-family: cursive; white-space: break-spaces">
+        <form id="login-form" style="text-align-last: center; font-family: serif; white-space: break-spaces">
             <label for="username">Username</label>
             <input id="username" name="username" type="text"/>
             <label for="email">Email</label>
@@ -49,10 +49,11 @@ function RegisterEvent(){
             body: JSON.stringify(newUser)
         };
 
-        fetch("http://localhost:8080/api/users", request)
+        fetch("http://localhost:8080/api/users/create", request)
             .then((response) => {
                 console.log(response.status)
                 createView("/");
             });
     })
 }
+

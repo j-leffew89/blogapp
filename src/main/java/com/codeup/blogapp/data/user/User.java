@@ -17,14 +17,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false)
     private String username;
 
     @Email
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -37,7 +37,7 @@ public class User {
 
     public enum Role{USER, ADMIN};
 
-    public User(long id, String username, String email,
+    public User(Long id, String username, String email,
                 String password, Collection<Post> post) {
         this.id = id;
         this.username = username;
@@ -57,7 +57,7 @@ public class User {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
