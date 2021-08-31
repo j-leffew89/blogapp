@@ -2,7 +2,9 @@ package com.codeup.blogapp.web;
 
 import com.codeup.blogapp.data.user.User;
 import com.codeup.blogapp.data.user.UsersRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
@@ -41,7 +43,8 @@ public class UsersController {
         return usersRepository.findByEmail(email).get();
     }
 
-    @PostMapping("/create")
+    @PostMapping
+    @PreAuthorize("!hasAuthority('USER')")
     private void createUser(@RequestBody User newUser) {
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         usersRepository.save(newUser);
